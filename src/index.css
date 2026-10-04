@@ -1,0 +1,313 @@
+@import "tailwindcss";
+
+@theme {
+  /* — 01 HAGANE — */
+  --color-paper: #f3eee6;
+  --color-leaf: #e7dfd2;
+  --color-ink: #16130f;
+  --color-ember: #c2521b;
+  --color-seal: #c8361f;
+  --color-ash: #8c8377;
+  --color-night: #141a24;
+
+  /* — 02 NOCTURNE — */
+  --color-noir: #06060a;
+  --color-noir2: #0d0d13;
+  --color-bone: #ede7dd;
+  --color-gold: #c9a227;
+  --color-wine: #5a1f2b;
+
+  /* — 03 MONOLITH — */
+  --color-concrete: #e4e2dd;
+  --color-slab: #101010;
+  --color-ultra: #2137ff;
+  --color-dust: #9a978f;
+
+  /* — 04 VOLTAGE — */
+  --color-void: #0a0a0a;
+  --color-acid: #d6ff3f;
+  --color-volt: #2b3bff;
+  --color-chalk: #f2f2ef;
+
+  /* — 05 PELAGIC — */
+  --color-abyss: #020a10;
+  --color-tide: #d8f2ef;
+  --color-biolume: #5ff5e0;
+  --color-reef: #0f6b7a;
+
+  /* — 06 FOLIO — */
+  --color-tomato: #ff4a24;
+  --color-lamp: #101010;
+  --color-foil: #f3f0e8;
+  --color-foil2: #e6e1d4;
+
+  /* — 07 NORDLYS — */
+  --color-fog: #e8ebe6;
+  --color-spruce: #15231e;
+  --color-lantern: #e8a252;
+  --color-fjord: #2f4a56;
+  --color-ice: #a9cfe0;
+
+  /* — 08 ARGILE — */
+  --color-cream: #f1e9dc;
+  --color-sand: #e2d2bc;
+  --color-terra: #b4532f;
+  --color-umber: #2a1d16;
+
+  --font-display: "Bodoni Moda", "Times New Roman", serif;
+  --font-sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-jp: "Shippori Mincho", "Hiragino Mincho ProN", serif;
+  --font-syne: "Syne", "Archivo", sans-serif;
+  --font-grotesk: "Space Grotesk", "Archivo", sans-serif;
+  --font-instr: "Instrument Serif", "Bodoni Moda", serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+  --font-anybody: "Anybody", "Archivo", sans-serif;
+  --font-bricolage: "Bricolage Grotesque", "Archivo", sans-serif;
+  --font-recursive: "Recursive", ui-monospace, monospace;
+  --font-fraunces: "Fraunces", "Times New Roman", serif;
+  --font-news: "Newsreader", "Times New Roman", serif;
+  --font-manrope: "Manrope", "Helvetica Neue", sans-serif;
+  --font-cormorant: "Cormorant", "Times New Roman", serif;
+  --font-instsans: "Instrument Sans", "Helvetica Neue", sans-serif;
+  --font-dmsans: "DM Sans", "Helvetica Neue", sans-serif;
+}
+
+/* ---------- smooth scroll (Lenis) ---------- */
+html {
+  -webkit-text-size-adjust: 100%;
+  background: #06060a;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-acid);
+  color: #0a0a0a;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* ---------- custom cursor ---------- */
+html.hide-cursor,
+html.hide-cursor * {
+  cursor: none !important;
+}
+html.hide-cursor input,
+html.hide-cursor textarea,
+html.hide-cursor select,
+html.hide-cursor [contenteditable="true"] {
+  cursor: auto !important;
+}
+
+/* ---------- typographic utilities ---------- */
+.label {
+  font-family: var(--font-grotesk);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.num {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.jp {
+  font-family: var(--font-jp);
+}
+
+/* NB: the stroke colour must be explicit — `currentColor` would resolve to the
+   element's own `color`, which is transparent here, hiding the outline. */
+.stroke-type {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--stroke, #f2f2ef);
+  paint-order: stroke fill;
+}
+
+/* Fraunces at its softest, wonkiest — the ARGILE display voice */
+.argile-soft {
+  font-family: var(--font-fraunces);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+
+/* ---------- grain ---------- */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.34;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+}
+
+.grain-light::after {
+  mix-blend-mode: screen;
+  opacity: 0.18;
+}
+
+.hairline {
+  border-color: color-mix(in srgb, var(--color-ink) 22%, transparent);
+}
+
+.rule-draw {
+  transform-origin: left center;
+}
+
+/* ---------- marquee ---------- */
+@keyframes slide-x {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: slide-x var(--dur, 28s) linear infinite;
+  will-change: transform;
+}
+.marquee-track.rev {
+  animation-direction: reverse;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: spin-slow 18s linear infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+/* NORDLYS — the slow push-in on a hero photograph */
+@keyframes kenburns {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.11);
+  }
+}
+.kenburns {
+  animation: kenburns 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* FOLIO — a variable font breathing between its extremes */
+@keyframes vf-breathe {
+  0%,
+  100% {
+    font-variation-settings: "wght" 160, "wdth" 55;
+  }
+  50% {
+    font-variation-settings: "wght" 900, "wdth" 150;
+  }
+}
+.vf-breathe {
+  animation: vf-breathe 4.2s ease-in-out infinite;
+}
+
+/* FOLIO — range inputs */
+input[type="range"].rng {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 22px;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"].rng::-webkit-slider-runnable-track {
+  height: 2px;
+  background: currentColor;
+}
+input[type="range"].rng::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  margin-top: -8px;
+  border-radius: 999px;
+  border: 2px solid currentColor;
+  background: var(--rng-thumb, #ff4a24);
+}
+input[type="range"].rng::-moz-range-track {
+  height: 2px;
+  background: currentColor;
+}
+input[type="range"].rng::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  border-radius: 999px;
+  border: 2px solid currentColor;
+  background: var(--rng-thumb, #ff4a24);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .spin-slow,
+  .pulse-dot,
+  .kenburns,
+  .vf-breathe {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
